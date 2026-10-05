@@ -32,11 +32,18 @@ res_boot <- westerlund_test(
   data = df, yvar = "y", xvars = "x1",
   idvar = "id", timevar = "time",
   constant = TRUE, lags = c(0, 1),
-  bootstrap = 50, verbose = FALSE
+  bootstrap = 50, seed = 123, verbose = FALSE
 )
 
-# 4. Visualize the Bootstrap Results
-p <- plot(res_boot)
+# 4. Inspect the full result summary
+summary(res_boot)
+
+# 5. Visualize the Bootstrap Results
+p <- plot(
+  res_boot,
+  conf_level = 0.05,
+  show_robust_p = TRUE
+)
 
 print(p)
 
